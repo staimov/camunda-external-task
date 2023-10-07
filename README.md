@@ -21,7 +21,7 @@ docker compose up -d
 
 Default Camunda username/password: demo/demo
 
-6. Use Postman to start Camunda process instances with input variables (innovationId, innovationCost, innovationEffect):
+6. Use Postman to start Camunda process instance with input variables (innovationId, innovationCost, innovationEffect):
 
 POST http://localhost:8080/engine-rest/process-definition/key/innovations_process/start 
 
