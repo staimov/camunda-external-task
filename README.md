@@ -21,7 +21,7 @@ docker compose up -d
 
 Default Camunda username/password: demo/demo
 
-6. Use Postman (https://www.postman.com/downloads/) to start Camunda process instances:
+6. Use Postman to start Camunda process instances with input variables (innovationId, innovationCost, innovationEffect):
 
 POST http://localhost:8080/engine-rest/process-definition/key/innovations_process/start 
 
@@ -33,7 +33,7 @@ Body:
 			"value":2100,
 			"type":"integer"
 		},
-        "innovationEffect": {
+        	"innovationEffect": {
 			"value":5600,
 			"type":"integer"
 		},
@@ -46,7 +46,7 @@ Body:
 
 ![screenshot2](/screenshots/postman.png?raw=true)
 
-7. Start multiple instances of the process with different input variable values (innovationId, innovationCost, innovationEffect).
+7. Start multiple instances of the process with different input variable values.
 8. Open Mongo Express UI and check the contents of innovation_db database (http://localhost:8081/db/innovations_db/innovation):
 
 ![screenshot2](/screenshots/mongo-express.png?raw=true)
