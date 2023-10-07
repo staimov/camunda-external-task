@@ -1,0 +1,22 @@
+camunda.bpm.client:
+  base-url: http://camunda:8080/engine-rest # the URL pointing to the Camunda Platform Runtime REST API
+  # base-url: http://localhost:8080/engine-rest
+  lock-duration: 10000 # defines how many milliseconds the External Tasks are locked until they can be fetched again
+  subscriptions:
+    innovationReview: # topic name of the External Service Task
+      variable-names: innovationId, innovationCost, innovationEffect
+      process-definition-key: innovations_process # only filter for External Tasks with this process definition key
+    innovationApprove:
+      variable-names: innovationId, innovationCost, innovationEffect, innovationResult
+      process-definition-key: innovations_process
+    innovationReject:
+      variable-names: innovationId, innovationCost, innovationEffect, innovationResult
+      process-definition-key: innovations_process
+spring.data.mongodb:
+  authentication-database: admin
+  username: root
+  password: root
+  database: innovations_db
+  port: 27017
+  host: mongo
+  # host: localhost
