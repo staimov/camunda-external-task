@@ -12,7 +12,12 @@ mvn clean install
 docker compose up -d
 ```
 3. Download and start Camunda Modeler (https://camunda.com/download/modeler/). Open process model [innovations_process.bpmn](./innovations_process.bpmn) and deploy it to Camunda Platform container:
+
+![screenshot2](/screenshots/modeler.png?raw=true)
+
 4. Check the deployment in Camunda Cockpit (http://localhost:8080/camunda/app/cockpit/default/#/processes):
+
+![screenshot2](/screenshots/deployments.png?raw=true)
 
 Default Camunda username/password: demo/demo
 
@@ -38,5 +43,12 @@ Body:
 	}
 }
 ```
+
+![screenshot2](/screenshots/postman.png?raw=true)
+
 7. Start multiple instances of the process with different input variable values (innovationId, innovationCost, innovationEffect).
-8. Open Mongo Express UI and check the contents of innovation_db database (http://localhost:8081/db/innovations_db/innovation): 
+8. Open Mongo Express UI and check the contents of innovation_db database (http://localhost:8081/db/innovations_db/innovation):
+
+![screenshot2](/screenshots/mongo-express.png?raw=true)
+
+Default Mongo Express username/password: root/root
