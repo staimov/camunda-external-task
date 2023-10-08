@@ -3,6 +3,7 @@ package com.staimov.camunda_external_task.handler;
 import com.staimov.camunda_external_task.entity.Innovation;
 import com.staimov.camunda_external_task.entity.Status;
 import com.staimov.camunda_external_task.service.InnovationService;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription;
 import org.camunda.bpm.client.task.ExternalTask;
 import org.camunda.bpm.client.task.ExternalTaskHandler;
@@ -23,26 +24,30 @@ public class InnovationRejectHandler implements ExternalTaskHandler {
     }
 
     public void execute(ExternalTask externalTask, ExternalTaskService externalTaskService) {
-        // get variables
-        String innovationId = externalTask.getVariable("innovationId");
-        int innovationEffect = externalTask.getVariable("innovationEffect");
-        int innovationCost = externalTask.getVariable("innovationCost");
-        int innovationResult = externalTask.getVariable("innovationResult");
+        try {
+            // get variables
+            String innovationId = externalTask.getVariable("innovationId");
+            int innovationEffect = externalTask.getVariable("innovationEffect");
+            int innovationCost = externalTask.getVariable("innovationCost");
+            int innovationResult = externalTask.getVariable("innovationResult");
 
-        Innovation innovation = new Innovation(
-                innovationId,
-                innovationEffect,
-                innovationCost,
-                innovationResult,
-                Status.REJECTED);
+            Innovation innovation = new Innovation(
+                    innovationId,
+                    innovationEffect,
+                    innovationCost,
+                    innovationResult,
+                    Status.REJECTED);
 
-        service.saveOrUpdate(innovation);
+            service.saveOrUpdate(innovation);
 
-        // complete the external task
-        externalTaskService.complete(externalTask);
+            // complete the external task
+            externalTaskService.complete(externalTask);
 
-        Logger.getLogger("innovationReject")
-                .log(Level.INFO, "The innovation {0} with result {1} is REJECTED!",
-                        new Object[]{innovationId, innovationResult});
+            Logger.getLogger("innovationReject")
+                    .log(Level.INFO, "The innovation {0} with result {1} is REJECTED!",
+                            new Object[]{innovationId, innovationResult});
+        } catch (Exception e) {
+            externalTaskService.handleFailure(externalTask, e.getMessage(), ExceptionUtils.getStackTrace(e), 0, 0L);
+        }
     }
 }
