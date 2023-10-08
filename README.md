@@ -47,6 +47,7 @@ Body:
 ![screenshot2](/screenshots/postman.png?raw=true)
 
 Default Camunda username/password: demo/demo
+
 Authorization: Basic
 
 7. Start multiple instances of the process with different input variable values.
