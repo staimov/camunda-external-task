@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Innovation {
     // A field without an annotation but named id 
     // will be mapped to the '_id' field.
+    // https://docs.spring.io/spring-data/mongodb/docs/1.2.0.RELEASE/reference/html/mapping-chapter.html
     private String id;
     private Integer effect;
     private Integer cost;
