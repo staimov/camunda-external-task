@@ -7,7 +7,7 @@ External tasks for Camunda BPM process + saving process data to MongoDB.
 ```
 mvn clean install
 ```
-2. Build and run docker containers (camunda. mongodb, mongo-express and the app):
+2. Build and run docker containers (camunda. mongodb, mongo-express and the external tasks app):
 ```
 docker compose up -d
 ```
